@@ -7,9 +7,7 @@ const DashboardDefaultPage = Loadable(
   lazy(() => import("../logic/dashboard/pages/DashboardDefaultPage"))
 );
 
-const ProductoPage = Loadable(
-  lazy(() => import("../logic/product/pages/ProductoPage"))
-);
+
 
 const LogicRoutes = {
   path: "/",
@@ -28,10 +26,10 @@ const LogicRoutes = {
         },
       ],
     },
-    {
-      path: "producto",
-      element: <ProductoPage />,
-    },
+    // {
+    //   path: "producto",
+    //   element: <ProductoPage />,
+    // },
   ],
 };
 

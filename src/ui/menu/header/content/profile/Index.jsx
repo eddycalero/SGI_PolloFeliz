@@ -21,13 +21,11 @@ import {
 
 import { MainCard, Transitions } from "../../../../../components";
 
-import ProfileTab from "./ProfileTab";
-import SettingTab from "./SettingTab";
+
 
 import {
   LogoutOutlined,
-  SettingOutlined,
-  UserOutlined,
+
 } from "@ant-design/icons";
 
 function TabPanel({ children, value, index, ...other }) {
@@ -103,7 +101,7 @@ const Profile = () => {
         onClick={handleToggle}
       >
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
-          <Button variant="contained">Iniciar Secion</Button>
+          <Button variant="contained" color="primary">hols</Button>
         </Stack>
       </ButtonBase>
       <Popper
@@ -146,25 +144,7 @@ const Profile = () => {
                         justifyContent="space-between"
                         alignItems="center"
                       >
-                        <Grid item>
-                          <Stack
-                            direction="row"
-                            spacing={1.25}
-                            alignItems="center"
-                          >
-                            <Avatar
-                              alt="profile user"
-                              src={""}
-                              sx={{ width: 32, height: 32 }}
-                            />
-                            <Stack>
-                              <Typography variant="h6">John Doe</Typography>
-                              <Typography variant="body2" color="textSecondary">
-                                UI/UX Designer
-                              </Typography>
-                            </Stack>
-                          </Stack>
-                        </Grid>
+                        
                         <Grid item>
                           <IconButton
                             size="large"
@@ -176,63 +156,7 @@ const Profile = () => {
                         </Grid>
                       </Grid>
                     </CardContent>
-                    {open && (
-                      <>
-                        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                          <Tabs
-                            variant="fullWidth"
-                            value={value}
-                            onChange={handleChange}
-                            aria-label="profile tabs"
-                          >
-                            <Tab
-                              sx={{
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                textTransform: "capitalize",
-                              }}
-                              icon={
-                                <UserOutlined
-                                  style={{
-                                    marginBottom: 0,
-                                    marginRight: "10px",
-                                  }}
-                                />
-                              }
-                              label="Profile"
-                              {...a11yProps(0)}
-                            />
-                            <Tab
-                              sx={{
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                textTransform: "capitalize",
-                              }}
-                              icon={
-                                <SettingOutlined
-                                  style={{
-                                    marginBottom: 0,
-                                    marginRight: "10px",
-                                  }}
-                                />
-                              }
-                              label="Setting"
-                              {...a11yProps(1)}
-                            />
-                          </Tabs>
-                        </Box>
-                        <TabPanel value={value} index={0} dir={theme.direction}>
-                          <ProfileTab handleLogout={handleLogout} />
-                        </TabPanel>
-                        <TabPanel value={value} index={1} dir={theme.direction}>
-                          <SettingTab />
-                        </TabPanel>
-                      </>
-                    )}
+                    
                   </MainCard>
                 </ClickAwayListener>
               </Paper>

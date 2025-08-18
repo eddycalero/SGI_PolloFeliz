@@ -1,10 +1,10 @@
-import { producto, inventario, almacen, segurida, visita } from "./pages";
+import { producto } from "./pages";
 import dashboard from "./dashboard";
 
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
-  items: [dashboard, visita, inventario, almacen, producto, segurida],
+  items: [dashboard,producto,],
 };
 
 export default menuItems;

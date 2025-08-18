@@ -88,7 +88,7 @@ const Theme = (colors) => {
     },
     grey: greyColors,
     tercero: {
-      lighter: "#016bf8",
+      lighter: "#005a3b99",
       100: blue[1],
       200: blue[2],
       light: blue[3],
