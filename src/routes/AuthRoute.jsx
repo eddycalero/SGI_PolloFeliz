@@ -1,3 +1,4 @@
+
 import { LoginPage } from "../logic/security/pages/LoginPage";
 import { MinimalLayout } from "../ui/layout/MinimalLayout";
 
@@ -6,9 +7,18 @@ const AuthRoutes = {
   element: <MinimalLayout />,
   children: [
     {
-      path: "/auth/login",
+      path: "/",
       element: <LoginPage />,
     },
+    {
+      path:"/auth/login",
+      children:[
+        {
+          path:"default",
+          element: <LoginPage/>
+        },
+      ],
+    }
   ],
 };
 

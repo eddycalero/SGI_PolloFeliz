@@ -6,7 +6,7 @@ import { AuthRoutes } from "./AuthRoute";
 // ==============================|| ROUTING RENDER ||============================== //
 
 const AppRoutes = () => {
-  return useRoutes([LogicRoutes, AuthRoutes]);
+  return useRoutes([AuthRoutes,LogicRoutes]);
 };
 
 export { AppRoutes };
