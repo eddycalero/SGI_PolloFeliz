@@ -101,7 +101,7 @@ const Profile = () => {
         onClick={handleToggle}
       >
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
-          <Button variant="contained" color="primary">hols</Button>
+          <Button variant="contained" color="primary">Iniciar sesion</Button>
         </Stack>
       </ButtonBase>
       <Popper
