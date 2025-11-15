@@ -1,9 +1,54 @@
 
+/* eslint-disable react-hooks/rules-of-hooks */
+import CrudTable from "./CrudTable";
 
-const UnitofMeasure = () =>{
-return(
-    <h5>Aqui ira la unidad de medida</h5>
-)
+import axios from "axios";
+import { useState, useEffect } from "react";
+
+const API_URL = "https://192.168.0.9:5070/api/UnitMeasurey";
+
+export default function UnitMeasureyView() {
+  const [dataCategory, useDataCategory] = useState([]);
+  const columns = [
+    { accessorKey: "unitMeasureId", header: "Id" },
+    { accessorKey: "name", header: "unitMeasureId" },
+    {
+      accessorKey: "isActive",
+      header: "State",
+    },
+  ];
+  const getCategories = () => axios.get(API_URL);
+  const handleCreate = (values) => console.log("Crear:", values);
+  const handleUpdate = (values) => console.log("Actualizar:", values);
+  const handleDelete = (id) => console.log("Eliminar:", id);
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.firstName) errors.firstName = "Campo requerido";
+    if (!values.email) errors.email = "Campo requerido";
+    return errors;
+  };
+
+  useEffect(() => {
+    getCategories().then((res) => {
+      console.log(res);
+      useDataCategory(res.data);
+    });
+  }, []);
+
+  return (
+    <CrudTable
+      title="Usuario"
+      columns={columns}
+      data={dataCategory}
+      isLoading={false}
+      isFetching={false}
+      isError={false}
+      isSaving={false}
+      onCreate={handleCreate}
+      onUpdate={handleUpdate}
+      onDelete={handleDelete}
+      validateFn={validate}
+    />
+  );
 }
-
-export default UnitofMeasure;
