@@ -33,8 +33,8 @@ const AuthLoginForm = () => {
   return (
     <Formik
       initialValues={{
-        email: "drmoodyn@gmail.com",
-        password: "D@vid2023#",
+        email: "",
+        password: "",
         submit: null,
       }}
       validationSchema={Yup.object().shape({

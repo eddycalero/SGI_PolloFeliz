@@ -1,9 +1,9 @@
 
-
 const DashboardDefaultPage = () => {
 
   return (
     <div>hola</div>
+    
   );
 };
 

@@ -7,7 +7,6 @@ const icons = {
   ProfileOutlined,
 };
 
-// ==============================|| MENU ITEMS - EXTRA PAGES ||============================== //
 
 
 const producto = {
@@ -43,9 +42,9 @@ const producto = {
       id: "modelo",
       title: "Modelo",
       type: "item",
-      url: "/register",
+      url: "/model",
       icon: icons.ProfileOutlined,
-      target: true,
+      target: false,
     },
     {
       id: "producto",

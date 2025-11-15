@@ -2,7 +2,7 @@
 
 const UnitofMeasure = () =>{
 return(
-    <h5>Aui ira la unidad de medida</h5>
+    <h5>Aqui ira la unidad de medida</h5>
 )
 }
 

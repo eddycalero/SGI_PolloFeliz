@@ -25,6 +25,10 @@ const UnitofMeasurePage = Loadable(
   lazy(() => import("../logic/product/views/UnitofMeasure"))
 )
 
+const ModelPage = Loadable(
+  lazy(() => import("../logic/product/views/ModelView"))
+)
+
 const LogicRoutes = {
   path: "/",
   element: <MainLayout />,
@@ -55,8 +59,12 @@ const LogicRoutes = {
       element: <CategoryPage />
     },
     {
-      path:"UnitofMeasure",
-      element: <UnitofMeasurePage/>
+      path: "UnitofMeasure",
+      element: <UnitofMeasurePage />
+    },
+    {
+      path: "model",
+      element: <ModelPage />
     }
   ],
 };
