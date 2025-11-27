@@ -30,6 +30,14 @@ const producto = {
       icon: icons.ProfileOutlined,
       target: false,
     },
+      {
+      id: "subcategoria",
+      title: "Sub Categoria",
+      type: "item",
+      url: "/SubCategory",
+      icon: icons.ProfileOutlined,
+      target: false,
+    },
     {
       id: "marca",
       title: "Marca",
