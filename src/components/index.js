@@ -13,4 +13,7 @@ export * from "./anychart/MonthlyBarChart";
 export * from "./AnalyticEcommerce";
 export * from "./CalendarEvent";
 export * from "./dialog/DialogCalendar";
-export * from "./button/FabButton"
+export * from "./material-react-table/WithMaterialReactTable"
+export * from "./mui/WithSwitch"
+export * from "./mui/WithTextField"
+export * from "./WithBackdrop"

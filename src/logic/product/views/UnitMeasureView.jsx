@@ -2,16 +2,16 @@ import { Tooltip, IconButton, Typography } from "@mui/material"
 import EditIcon from '@mui/icons-material/Edit';
 import { WithMaterialReactTable } from "../../../components/material-react-table/WithMaterialReactTable"
 import { useEffect, useMemo, useState } from "react";
-import { categoryApi } from "../../../api";
+import { unitMeasureApi } from "../../../api";
 import WithChip from "../../../components/mui/WithChip";
 import { WithFabButton } from "../../../components/button/WithFabButton";
-import { useHookCategoryService } from "../services/categoryValidateYup"
+import { useHookUnitMeasureService } from "../services/unitMeasureValidateYup"
 import { FormProvider } from "react-hook-form";
-import { SideBarCategoryForm } from "../forms/CategoryForm"
+import { SideBarUnitMeasureForm } from "../forms/UnitMeasureForm"
 import { WithBackdrop } from "../../../components";
 
-const CategoryView = () => {
-    const { useHook, reset } = useHookCategoryService()
+const UniMeasureView = () => {
+    const { useHook, reset } = useHookUnitMeasureService()
 
     const [data, setData] = useState({
         table: [],
@@ -29,7 +29,7 @@ const CategoryView = () => {
 
     const loadingData = () => {
         handleLoading(true)
-        categoryApi.getAll().then(res => {
+        unitMeasureApi.getAll().then(res => {
             setData((x) => ({
                 ...x,
                 table: res.data
@@ -43,7 +43,7 @@ const CategoryView = () => {
 
     const columns = useMemo(
         () => [
-            { accessorKey: "name", header: "CATEGORIA", size: 200 },
+            { accessorKey: "name", header: "UNIDAD DE MEDIDA", size: 200 },
             {
                 accessorKey: "isDeleted",
                 header: "ESTADO",
@@ -75,15 +75,15 @@ const CategoryView = () => {
         reset();
 
         handleLoading(true)
-        if (dataSave.categoryId == 0) {
-            categoryApi.create(dataSave).then(res => {
+        if (dataSave.unitMeasureId == 0) {
+            unitMeasureApi.create(dataSave).then(res => {
             }).catch(error => { }).finally(() => {
                 loadingData()
             }).finally(() => {
                 handleLoading(false)
             })
         } else {
-            categoryApi.update(dataSave.categoryId, dataSave).then(res => {
+            unitMeasureApi.update(dataSave.unitMeasureId, dataSave).then(res => {
             }).catch(error => { }).finally(() => {
                 loadingData()
             }).finally(() => {
@@ -124,11 +124,11 @@ const CategoryView = () => {
         <>
             <WithBackdrop open={data.isLoading} />
             <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
-                Categoria
+                Unidad de Medida
             </Typography>
 
             <FormProvider {...useHook}>
-                <SideBarCategoryForm
+                <SideBarUnitMeasureForm
                     open={data.isOpen}
                     handleCarga={saveData}
                     handleClose={handleClosed} />
@@ -145,4 +145,4 @@ const CategoryView = () => {
     )
 }
 
-export default CategoryView
+export default UniMeasureView

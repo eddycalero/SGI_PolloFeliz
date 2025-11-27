@@ -1,20 +1,11 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useTheme } from "@mui/material/styles";
 import { Box, Toolbar, useMediaQuery } from "@mui/material";
-
 import Drawer from "./drawer";
 import Header from "./header";
-import navigation from "../../utils/menus";
-
-import { Breadcrumbs } from "../../components";
-
 import { openDrawer } from "../../store/menu/menuSlice";
-import { RingSpinnerOverlay } from "react-spinner-overlay";
-
-// ==============================|| MAIN LAYOUT ||============================== //
 
 const MainLayout = () => {
   const theme = useTheme();
@@ -23,24 +14,20 @@ const MainLayout = () => {
 
   const { drawerOpen } = useSelector((state) => state.menu);
 
-  // drawer toggler
   const [open, setOpen] = useState(drawerOpen);
   const handleDrawerToggle = () => {
     setOpen(!open);
     dispatch(openDrawer({ drawerOpen: !open }));
   };
 
-  // set media wise responsive drawer
   useEffect(() => {
     setOpen(!matchDownLG);
     dispatch(openDrawer({ drawerOpen: !matchDownLG }));
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchDownLG]);
 
   useEffect(() => {
     if (open !== drawerOpen) setOpen(drawerOpen);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [drawerOpen]);
 
   return (
@@ -53,7 +40,7 @@ const MainLayout = () => {
           sx={{ width: "100%", flexGrow: 1, p: { xs: 2, sm: 3 } }}
         >
           <Toolbar />
-          <Breadcrumbs navigation={navigation} title />
+        
           <Outlet />
         </Box>
       </Box>
