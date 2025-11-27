@@ -14,6 +14,10 @@ const CategoryPage = Loadable(
   lazy(() => import("../logic/product/views/CategoryView"))
 )
 
+const ProductPage = Loadable(
+  lazy(() => import("../logic/product/views/ProductView"))
+)
+
 
 const LogicRoutes = {
   path: "/",
@@ -39,6 +43,9 @@ const LogicRoutes = {
     {
       path: "category",
       element: <CategoryPage />
+    },{
+      path: "product",
+      element: <ProductPage />
     },
   ],
 };
