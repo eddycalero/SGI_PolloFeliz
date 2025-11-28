@@ -44,6 +44,7 @@
     "simplebar": "^6.2.5",
     "simplebar-react": "^3.2.4",
     "sort-by": "^1.2.0",
+    "sweetalert2": "^11.26.3",
     "yup": "^1.7.1"
   },
   "devDependencies": {

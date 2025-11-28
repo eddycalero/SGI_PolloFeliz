@@ -9,6 +9,7 @@ import { useHookProductService } from "../services/productValidateYup"
 import { FormProvider } from "react-hook-form";
 import { ProductForm } from "../forms/ProductForm"
 import { WithBackdrop } from "../../../components";
+import { swalError, swalSuccess } from "../../../components/Swal/WithSwal";
 
 const ProductView = () => {
     const { useHook, reset } = useHookProductService()
@@ -24,7 +25,6 @@ const ProductView = () => {
             ...x,
             isLoading: value
         }))
-        console.log(data)
     }
 
     const loadingData = () => {
@@ -43,7 +43,10 @@ const ProductView = () => {
 
     const columns = useMemo(
         () => [
-            { accessorKey: "name", header: "PRODUCTOS", size: 200 },
+            { accessorKey: "categoryName", header: "CATEGORIA", size: 200 },
+            { accessorKey: "subCategoryName", header: "SUB CATEGORIA", size: 200 },
+            { accessorKey: "productName", header: "PRODUCTOS", size: 200 },
+            { accessorKey: "unitMeasure", header: "U/M", size: 200 },
             {
                 accessorKey: "isDeleted",
                 header: "ESTADO",
@@ -65,7 +68,9 @@ const ProductView = () => {
 
     const saveData = (data) => {
         const dataSave = {
-            ...data
+            ...data,
+            unitMeasureId: data.unitMeasureId.unitMeasureId,
+            subCategoryId: data.subCategoryId.subCategoryId
         }
         setData((x) => ({
             ...x,
@@ -77,6 +82,7 @@ const ProductView = () => {
         handleLoading(true)
         if (dataSave.productId == 0) {
             productApi.create(dataSave).then(res => {
+                 swalSuccess("Registro guardado");
             }).catch(error => { }).finally(() => {
                 loadingData()
             }).finally(() => {
@@ -84,9 +90,10 @@ const ProductView = () => {
             })
         } else {
             productApi.update(dataSave.productId, dataSave).then(res => {
-            }).catch(error => { }).finally(() => {
-                loadingData()
+                 swalSuccess("Registro Actualizado");
+            }).catch(error => {swalError("Ocurrio un error al modificar la categoria") }).finally(() => {
             }).finally(() => {
+                 loadingData()
                 handleLoading(false)
             })
         }
@@ -110,7 +117,19 @@ const ProductView = () => {
                             ...x,
                             isOpen: !x.isOpen
                         }))
-                        const data = row.original
+
+                        const data ={
+                            name: row.original.productName,
+                            productId: row.original.productId,
+                            subCategoryId:{
+                                subCategoryId: row.original.subCategoryId,
+                                categoryName:row.original.subCategoryName
+                            },
+                             unitMeasureId:{
+                                unitMeasureId: row.original.unitMeasureId,
+                                 name: row.original.unitMeasure
+                             }
+                        }
                         useHook.reset(data)
                     }}
                 >

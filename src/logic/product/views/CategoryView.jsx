@@ -9,6 +9,7 @@ import { useHookCategoryService } from "../services/categoryValidateYup"
 import { FormProvider } from "react-hook-form";
 import { SideBarCategoryForm } from "../forms/CategoryForm"
 import { WithBackdrop } from "../../../components";
+import { swalError, swalSuccess } from "../../../components/Swal/WithSwal";
 
 const CategoryView = () => {
     const { useHook, reset } = useHookCategoryService()
@@ -77,16 +78,21 @@ const CategoryView = () => {
         handleLoading(true)
         if (dataSave.categoryId == 0) {
             categoryApi.create(dataSave).then(res => {
+                swalSuccess("Registro guardado");
             }).catch(error => { }).finally(() => {
-                loadingData()
+                swalError("Ocurrio un error al guardar la categoria")
             }).finally(() => {
                 handleLoading(false)
+                loadingData()
             })
         } else {
             categoryApi.update(dataSave.categoryId, dataSave).then(res => {
-            }).catch(error => { }).finally(() => {
-                loadingData()
+                swalSuccess("Registro actualizado");
+            }).catch(error => {
+                  swalError("Ocurrio un error al modificar la categoria")
+             }).finally(() => {
             }).finally(() => {
+                loadingData()
                 handleLoading(false)
             })
         }

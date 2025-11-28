@@ -9,7 +9,7 @@ import { useHookUnitMeasureService } from "../services/unitMeasureValidateYup"
 import { FormProvider } from "react-hook-form";
 import { SideBarUnitMeasureForm } from "../forms/UnitMeasureForm"
 import { WithBackdrop } from "../../../components";
-
+import { swalError, swalSuccess } from "../../../components/Swal/WithSwal";
 const UniMeasureView = () => {
     const { useHook, reset } = useHookUnitMeasureService()
 
@@ -77,6 +77,7 @@ const UniMeasureView = () => {
         handleLoading(true)
         if (dataSave.unitMeasureId == 0) {
             unitMeasureApi.create(dataSave).then(res => {
+                 swalSuccess("Registro guardado");
             }).catch(error => { }).finally(() => {
                 loadingData()
             }).finally(() => {
@@ -84,10 +85,13 @@ const UniMeasureView = () => {
             })
         } else {
             unitMeasureApi.update(dataSave.unitMeasureId, dataSave).then(res => {
-            }).catch(error => { }).finally(() => {
-                loadingData()
+                 swalSuccess("Registro Actualizado");
+            }).catch(error => {swalError("Ocurrio un error al modificar la categoria") }).finally(() => {
+              
             }).finally(() => {
+                  loadingData()
                 handleLoading(false)
+
             })
         }
     }

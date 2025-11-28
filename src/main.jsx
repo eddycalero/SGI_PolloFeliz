@@ -6,6 +6,7 @@ import { AppRoutes } from "./routes/AppRoute";
 import { BrowserRouter } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./store/storeApp";
+import { SwalGlobalStyles } from "./components/Swal/WithSwalCon.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <ReduxProvider store={store}>
         <BrowserRouter>
           <ScrollTop>
+            <SwalGlobalStyles/>
             <AppRoutes />
           </ScrollTop>
         </BrowserRouter>

@@ -39,22 +39,6 @@ const producto = {
       target: false,
     },
     {
-      id: "marca",
-      title: "Marca",
-      type: "item",
-      url: "/brand",
-      icon: icons.ProfileOutlined,
-      target: false,
-    },
-    {
-      id: "modelo",
-      title: "Modelo",
-      type: "item",
-      url: "/model",
-      icon: icons.ProfileOutlined,
-      target: false,
-    },
-    {
       id: "producto",
       title: "Producto",
       type: "item",

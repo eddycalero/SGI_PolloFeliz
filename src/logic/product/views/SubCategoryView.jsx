@@ -9,6 +9,7 @@ import { FormProvider } from "react-hook-form";
 import { SidebarSubCategoryForm } from "../forms/SubCategoryForm"
 import { WithBackdrop } from "../../../components";
 import { useHookSubCategoryService } from "../services/subCategoryValidateYup";
+import { swalError, swalSuccess } from "../../../components/Swal/WithSwal";
 
 const SubCategoryView = () => {
     const { useHook, reset } = useHookSubCategoryService()
@@ -77,6 +78,7 @@ const SubCategoryView = () => {
         handleLoading(true)
         if (dataSave.subCategoryId == 0) {
             subCategoryApi.create(dataSave).then(res => {
+                 swalSuccess("Registro guardado");
             }).catch(error => {  }).finally(() => {
                 loadingData()
             }).finally(() => {
@@ -84,10 +86,12 @@ const SubCategoryView = () => {
             })
         } else {
             subCategoryApi.update(dataSave.subCategoryId, dataSave).then(res => {
-            }).catch(error => { }).finally(() => {
+                 swalSuccess("Registro Actualizado");
+            }).catch(error => {
+                swalError("Ocurrio un error al modificar la categoria")
+             }).finally(() => {
                 loadingData()
-            }).finally(() => {
-                handleLoading(false)
+                 handleLoading(false)
             })
         }
     }

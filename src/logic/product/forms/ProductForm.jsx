@@ -4,10 +4,38 @@ import { useFormContext } from "react-hook-form";
 import EditIcon from '@mui/icons-material/Edit';
 import ClearIcon from '@mui/icons-material/Clear';
 import { WithSwipeableDrawer } from "../../../components/sidebar/WithSwipeableDrawer"
-import { WithSwitchForm, WithTextField } from "../../../components"
+import { WithAutocomplite, WithSwitchForm, WithTextField } from "../../../components"
+import { useEffect, useState } from "react";
+import { subCategoryApi, unitMeasureApi } from "../../../api";
 
 const ProductForm = ({ open, handleClose, handleCarga }) => {
     const { handleSubmit } = useFormContext();
+
+    const [listData, setData]=useState({
+        subCategory: [],
+        unitMeasure: []
+    })
+
+    useEffect(()=>{
+        subCategoryApi.getAll().then(x =>{
+            const result = x.data?.filter(x => x.isActive);
+            setData((x)=>({
+                ...x,
+                 subCategory: result
+            }))
+        }).catch(error => {
+        })
+
+          unitMeasureApi.getAll().then(x =>{
+            const result = x.data?.filter(x => x.isActive);
+               setData((x)=>({
+                ...x,
+                   unitMeasure: result
+            }))
+        }).catch(error =>{
+        })
+
+    }, [])
 
     return (
         <>
@@ -49,6 +77,19 @@ const ProductForm = ({ open, handleClose, handleCarga }) => {
                             name={"name"}
                             label="Nombre"
                             placeholder="Ingresar un Producto"
+                        />
+                        <WithAutocomplite
+                            data={listData.subCategory}
+                            label="Sub Categoria"
+                            value={"categoryName"}
+                            name={"subCategoryId"}
+                        />
+
+                        <WithAutocomplite
+                            data={listData.unitMeasure}
+                            label="Unidad de Medida"
+                            value={"name"}
+                            name={"unitMeasureId"}
                         />
                         <WithSwitchForm name={"isActive"} />
                     </div>
